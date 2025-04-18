@@ -2,7 +2,7 @@ version: '3'
 
 services:
   api-gateway:
-    build: ./api-gateway
+    image: husnain239/cafe-management-api-gateway:latest
     ports:
       - "3000:3000"
     environment:
@@ -17,28 +17,34 @@ services:
       - menu-service
       - inventory-service
       - customer-service
+    restart: always
 
   order-service:
-    build: ./order-services
+    image: husnain239/cafe-management-order-services:latest
     ports:
       - "3001:3001"
+    restart: always
 
   payment-service:
-    build: ./payment-services
+    image: husnain239/cafe-management-payment-services:latest
     ports:
       - "3002:3002"
+    restart: always
 
   menu-service:
-    build: ./menu-services
+    image: husnain239/cafe-management-menu-services:latest
     ports:
       - "3003:3003"
+    restart: always
 
   inventory-service:
-    build: ./inventory-services
+    image: husnain239/cafe-management-inventory-services:latest
     ports:
       - "3004:3004"
+    restart: always
 
   customer-service:
-    build: ./customer-services
+    image: husnain239/cafe-management-customer-services:latest
     ports:
-      - "3005:3005" 
+      - "3005:3005"
+    restart: always 
