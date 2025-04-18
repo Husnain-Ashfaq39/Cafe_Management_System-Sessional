@@ -24,7 +24,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-          cache: 'npm'
 
       - name: Install ESLint
         run: |
@@ -32,6 +31,11 @@ jobs:
 
       - name: Run ESLint
         run: |
+          for dir in api-gateway order-services payment-services menu-services inventory-services customer-services; do
+            echo "Installing dependencies in $dir"
+            cd $dir && npm install && cd ..
+          done
+
           eslint api-gateway/ order-services/ payment-services/ menu-services/ inventory-services/ customer-services/ --ext .js || true
 
   build-push:
